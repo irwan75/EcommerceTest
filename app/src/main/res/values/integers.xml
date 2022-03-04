@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Louis Solo on Apr-05
+  ~ Copyright (c) 2020 . All rights reserved.
+  -->
+
+<resources>
+    <integer name="font.black">0</integer>
+    <integer name="font.bold">1</integer>
+    <integer name="font.heavy">2</integer>
+    <integer name="font.light">3</integer>
+    <integer name="font.medium">4</integer>
+    <integer name="font.semi_bold">5</integer>
+    <integer name="font.thin">6</integer>
+    <integer name="font.ultra_light">7</integer>
+
+    <integer name="font.poppins_800_black">8</integer>
+    <integer name="font.poppins_600_bold">9</integer>
+    <integer name="font.poppins_700_heavy">10</integer>
+    <integer name="font.poppins_300_light">11</integer>
+    <integer name="font.poppins_400_medium">12</integer>
+    <integer name="font.poppins_500_semi_bold">13</integer>
+    <integer name="font.poppins_100_thin">14</integer>
+    <integer name="font.poppins_200_ultra_light">15</integer>
+
+    <integer name="slide">200</integer>
+    <integer name="tooltip_overlay_alpha">120</integer>
+    <integer name="tooltip_animation_duration">800</integer>
+
+</resources>

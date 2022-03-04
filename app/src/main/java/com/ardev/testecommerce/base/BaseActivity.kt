@@ -1,4 +1,4 @@
-package com.ardev.secondcourseapplication.base
+package com.ardev.testecommerce.base
 
 import android.os.Bundle
 import android.os.PersistableBundle
