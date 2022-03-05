@@ -1,14 +1,13 @@
 package com.ardev.testecommerce.module.cataloglist
 
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ardev.testecommerce.R
 import com.ardev.testecommerce.base.BaseFragment
 import com.ardev.testecommerce.component.recyclerview.MyItemRecyclerViewAdapter
-import com.ardev.testecommerce.models.Items
+import com.ardev.testecommerce.models.others.Items
 import com.ardev.testecommerce.placeholder.PlaceholderContent
 
 /**
@@ -48,7 +47,7 @@ class ItemFragment : BaseFragment(), MyItemRecyclerViewAdapter.CallBack {
             columnCount <= 1 -> LinearLayoutManager(context)
             else -> GridLayoutManager(context, columnCount)
         }
-        adapter = MyItemRecyclerViewAdapter(context,PlaceholderContent.ITEMS, this)
+        adapter = MyItemRecyclerViewAdapter(context, PlaceholderContent.ITEMS, this)
         listView.adapter = adapter
     }
 

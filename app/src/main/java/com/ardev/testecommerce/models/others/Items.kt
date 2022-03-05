@@ -1,4 +1,4 @@
-package com.ardev.testecommerce.models
+package com.ardev.testecommerce.models.others
 
 import com.ardev.testecommerce.base.BaseModel
 
