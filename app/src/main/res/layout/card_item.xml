@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:name="com.ardev.testecommerce.module.component.card.ItemCard"
+    android:id="@+id/parentLayoutItemCard"
+    android:padding="15dp">
+
+    <View
+        android:id="@+id/boxStatic"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/black"
+        android:layout_centerVertical="true"
+        />
+
+    <LinearLayout
+        android:id="@+id/layoutData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/btnLock"
+        android:layout_toRightOf="@id/boxStatic"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1" />
+
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="content" />
+
+        <TextView
+            android:id="@+id/tvDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="detail" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnLock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:text="lock" />
+
+
+</RelativeLayout>
