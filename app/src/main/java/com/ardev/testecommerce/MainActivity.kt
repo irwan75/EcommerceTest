@@ -20,4 +20,13 @@ class MainActivity : BaseActivity() {
 
     }
 
+    override fun onBackPressed() {
+        val currentFragment = getCurrentFragment()
+        if (null != currentFragment && currentFragment.isOverrideOnBackPress()) {
+            currentFragment.onBackPress()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
 }

@@ -14,7 +14,7 @@ import com.ardev.testecommerce.models.others.Items
 
 class MyItemRecyclerViewAdapter(
     private  val context: Context?,
-    private val values: List<PlaceholderItem>,
+    private val values: List<Items>,
     private val callBack: CallBack
 ) : RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder>() {
 
@@ -34,10 +34,7 @@ class MyItemRecyclerViewAdapter(
         holder.tvContent.text = item.content
         holder.tvDetail.text = item.details
         holder.parentLayout.setOnClickListener {
-            var items = Items()
-            items.content = item.content
-            items.details = item.details
-            items.id = item.id
+            var items = Items(id = item.id, content = item.content, details = item.details)
             callBack.onItemSelected(items)
         }
     }

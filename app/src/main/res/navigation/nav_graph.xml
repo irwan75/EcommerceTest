@@ -12,7 +12,13 @@
         tools:layout="@layout/fragment_item_list" >
         <action
             android:id="@+id/action_itemFragment_to_detailItemFragment"
-            app:destination="@id/detailItemFragment" />
+            app:destination="@id/detailItemFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
     </fragment>
     <fragment
         android:id="@+id/detailItemFragment"
@@ -21,6 +27,11 @@
         tools:layout="@layout/fragment_detail_item" >
         <action
             android:id="@+id/action_detailItemFragment_to_itemFragment"
-            app:destination="@id/itemFragment" />
+            app:destination="@id/itemFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
 </navigation>

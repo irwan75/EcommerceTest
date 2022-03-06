@@ -1,6 +1,9 @@
 package com.ardev.testecommerce.module.cataloglist
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +11,8 @@ import com.ardev.testecommerce.R
 import com.ardev.testecommerce.base.BaseFragment
 import com.ardev.testecommerce.component.recyclerview.MyItemRecyclerViewAdapter
 import com.ardev.testecommerce.models.others.Items
+import com.ardev.testecommerce.module.cataloglist.viewmodel.ItemViewModel
+import com.ardev.testecommerce.module.detailcataloglist.viewmodel.DetailItemViewModel
 import com.ardev.testecommerce.placeholder.PlaceholderContent
 
 /**
@@ -17,6 +22,10 @@ class ItemFragment : BaseFragment(), MyItemRecyclerViewAdapter.CallBack {
 
     private lateinit var adapter: MyItemRecyclerViewAdapter
     private lateinit var listView: RecyclerView
+
+    private val mViewModel: ItemViewModel by lazy {
+        ViewModelProvider(this).get(ItemViewModel::class.java)
+    }
 
     companion object {
 
@@ -39,23 +48,44 @@ class ItemFragment : BaseFragment(), MyItemRecyclerViewAdapter.CallBack {
 
     override fun setupView() {
         listView = getmView()!!.findViewById(R.id.list)
-        initRecycleView()
+        initRecycleView(listOf<Items>())
     }
 
-    private fun initRecycleView(){
+    private fun initRecycleView(dataList: List<Items>){
         listView.layoutManager = when {
-            columnCount <= 1 -> LinearLayoutManager(context)
-            else -> GridLayoutManager(context, columnCount)
+            columnCount <= 1 -> LinearLayoutManager(getmView()?.context)
+            else -> GridLayoutManager(getmView()?.context, columnCount)
         }
-        adapter = MyItemRecyclerViewAdapter(context, PlaceholderContent.ITEMS, this)
+        adapter = MyItemRecyclerViewAdapter(getmView()?.context, dataList, this)
         listView.adapter = adapter
     }
+
+//    override fun initializeViewModel() {
+//        mViewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
+//    }
 
     override fun onItemSelected(item: Items) {
         val bundle = Bundle()
         bundle.putSerializable(ITEM_DATA, item)
         navigate(R.id.action_itemFragment_to_detailItemFragment, false, bundle)
     }
+
+    override fun registerEvent() {
+        mViewModel.fetchDataItem()
+    }
+
+    override fun initializeViewModel() {
+        mViewModel.getItemsData.observe(this){
+            if(it==null){
+                Toast.makeText(getmView()?.context, "Unseccessful network call", Toast.LENGTH_SHORT).show()
+                return@observe
+            }
+            var items = Items()
+            initRecycleView(items.fromListResponseItemsData(it))
+        }
+    }
+
+
 
 
 }

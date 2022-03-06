@@ -48,6 +48,13 @@ abstract class BaseFragment: Fragment() {
         executeData()
     }
 
+    fun onBackPress(){
+    }
+
+    fun isOverrideOnBackPress(): Boolean {
+        return false
+    }
+
     internal fun navigate(
         graphId: Int,
         singleTop: Boolean = false,
@@ -108,5 +115,9 @@ abstract class BaseFragment: Fragment() {
     open fun unregister() {
         //unregister events
     }
+
+
+
+
 
 }

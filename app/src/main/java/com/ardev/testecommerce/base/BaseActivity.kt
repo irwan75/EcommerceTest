@@ -24,7 +24,7 @@ abstract class BaseActivity: AppCompatActivity() {
 
     }
 
-    private fun getCurrentFragment(): BaseFragment? {
+    open fun getCurrentFragment(): BaseFragment? {
         val fragments = supportFragmentManager.fragments
         if (!fragments.isNullOrEmpty()) {
             for (fragment in fragments) {
@@ -46,5 +46,6 @@ abstract class BaseActivity: AppCompatActivity() {
         }
         return null
     }
+
 
 }

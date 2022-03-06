@@ -7,6 +7,7 @@ import com.ardev.testecommerce.R
 import com.ardev.testecommerce.base.BaseFragment
 import com.ardev.testecommerce.models.others.Items
 import com.ardev.testecommerce.module.cataloglist.ItemFragment
+import com.ardev.testecommerce.module.cataloglist.viewmodel.ItemViewModel
 import com.ardev.testecommerce.module.detailcataloglist.viewmodel.DetailItemViewModel
 
 class DetailItemFragment : BaseFragment() {
@@ -16,7 +17,9 @@ class DetailItemFragment : BaseFragment() {
     private var tvCount: TextView? = null
     private var btnIncrement: Button? =null
 
-    private lateinit var mViewModel: DetailItemViewModel
+    val mViewModel: DetailItemViewModel by lazy {
+        ViewModelProvider(this).get(DetailItemViewModel::class.java)
+    }
 
     override fun layoutId(): Int = R.layout.fragment_detail_item
 
@@ -33,7 +36,7 @@ class DetailItemFragment : BaseFragment() {
 
         tvCount?.text = mViewModel.getValueTemporary().toString()
         tvItemName?.let {
-            it.text = product.id
+            it.text = product.details
         }
     }
 
@@ -45,9 +48,9 @@ class DetailItemFragment : BaseFragment() {
         }
     }
 
-    override fun initializeViewModel() {
-        mViewModel = ViewModelProvider(this).get(DetailItemViewModel::class.java)
-    }
+//    override fun initializeViewModel() {
+//        mViewModel = ViewModelProvider(this).get(DetailItemViewModel::class.java)
+//    }
 
 
 

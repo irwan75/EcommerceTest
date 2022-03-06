@@ -2,17 +2,11 @@ package com.ardev.testecommerce.base
 
 import android.app.Application
 import android.content.Context
-//import com.ardev.secondcourseapplication.di.ApplicationComponent
 
 class AndroidApplication : Application(){
 
-//    private var context: Context? = null
-//    public fun getContext():Context?{
-//        return context
-//    }
-
     companion object{
-
+        lateinit var context: Context
     }
 
 //    val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
@@ -24,7 +18,7 @@ class AndroidApplication : Application(){
 
     override fun onCreate() {
         super.onCreate()
-//        context = applicationContext
+        context = this
     }
 
 
