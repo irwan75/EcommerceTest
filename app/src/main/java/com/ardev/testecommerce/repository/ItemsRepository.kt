@@ -3,10 +3,10 @@ package com.ardev.testecommerce.repository
 import com.ardev.testecommerce.models.others.Items
 import com.ardev.testecommerce.models.response.ResponseItemsData
 import com.ardev.testecommerce.services.cache.dao.items.DaoItems
-import com.ardev.testecommerce.services.cloud.NetworkInstance
+import com.ardev.testecommerce.services.cloud.clients.ClientItems
 import javax.inject.Inject
 
-class ItemsRepository @Inject constructor (private val daoItems: DaoItems)  {
+class ItemsRepository @Inject constructor (private val daoItems: DaoItems, private val clientItems: ClientItems)  {
 
 //    fun getDataItems(): Either<Failure, Boolean>
 //
@@ -29,7 +29,7 @@ class ItemsRepository @Inject constructor (private val daoItems: DaoItems)  {
     }
 
     suspend fun getItemsData(): List<ResponseItemsData>?{
-        val request = NetworkInstance.clientItems.getItemsData()
+        val request = clientItems.getItemsData()
 
         if(request.isSuccessful){
             return request.body

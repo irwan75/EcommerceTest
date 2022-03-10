@@ -12,9 +12,8 @@ import com.ardev.testecommerce.component.recyclerview.MyItemRecyclerViewAdapter
 import com.ardev.testecommerce.models.others.Items
 import com.ardev.testecommerce.models.response.ResponseItemsData
 import com.ardev.testecommerce.module.cataloglist.viewmodel.ItemViewModel
-import com.ardev.testecommerce.shared.extension.failure
-import com.ardev.testecommerce.shared.extension.observe
-import com.ardev.testecommerce.shared.extension.viewModel
+import com.ardev.testecommerce.shared.extension.*
+import com.facebook.shimmer.ShimmerFrameLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -25,6 +24,7 @@ class ItemFragment : BaseFragment(), MyItemRecyclerViewAdapter.CallBack {
 
     private lateinit var adapter: MyItemRecyclerViewAdapter
     private lateinit var listView: RecyclerView
+    private lateinit var shimmerLoading: ShimmerFrameLayout
 
     private val mViewModel: ItemViewModel by lazy {
         ViewModelProvider(this)[ItemViewModel::class.java]
@@ -53,6 +53,8 @@ class ItemFragment : BaseFragment(), MyItemRecyclerViewAdapter.CallBack {
 
     override fun setupView() {
         listView = getmView()!!.findViewById(R.id.list)
+        shimmerLoading = getmView()!!.findViewById(R.id.loadingShimmer)
+        shimmerLoading.show()
         initRecycleView(listOf<Items>())
     }
 
@@ -85,12 +87,11 @@ class ItemFragment : BaseFragment(), MyItemRecyclerViewAdapter.CallBack {
                 Toast.makeText(getmView()?.context, "Unseccessful network call", Toast.LENGTH_SHORT).show()
                 return@observe
             }
+            shimmerLoading.hide()
             var items = Items()
             initRecycleView(items.fromListResponseItemsData(it))
         }
     }
-
-
 
 
 }

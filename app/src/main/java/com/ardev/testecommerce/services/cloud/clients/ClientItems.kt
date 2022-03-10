@@ -6,8 +6,9 @@ import com.ardev.testecommerce.services.cloud.api.ApiItems
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
+import javax.inject.Inject
 
-class ClientItems(private val apiItems: ApiItems)  {
+class ClientItems @Inject constructor (private val apiItems: ApiItems)  {
 
     suspend fun getItemsData(): SimpleResponse<List<ResponseItemsData>>{
         return safeApiCall { apiItems.getItemsData() }
