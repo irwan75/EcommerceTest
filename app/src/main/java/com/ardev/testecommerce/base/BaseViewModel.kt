@@ -1,11 +1,13 @@
 package com.ardev.testecommerce.base
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ardev.testecommerce.shared.exception.Failure
 import kotlinx.coroutines.Job
 
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseViewModel  : ViewModel() {
 
     var failure: MutableLiveData<Failure> = MutableLiveData()
 

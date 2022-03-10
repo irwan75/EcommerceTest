@@ -9,7 +9,10 @@ import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -38,20 +41,6 @@ object NetworkInstance {
 
         builder.addInterceptor(interceptor = customInterceptor)
 
-//        { chain ->
-//            val builders = chain.request().newBuilder()
-////            if (token.isNotEmpty() ) {
-////                builder.header("Authorization", "Bearer $token")
-////            }
-////            if (null != selectedStore) {
-////                builder.header("source-code", "$storeCode")
-////            }
-//            builders.header("mobile-version", BuildConfig.VERSION_NAME)
-//            builders.header("mobile-build-number", "${BuildConfig.VERSION_CODE}")
-//            builders.header("mobile-os", "Android")
-//            chain.proceed(builders.build())
-//        }
-
         if (BuildConfig.DEBUG) {
             builder.addInterceptor(
                 ChuckerInterceptor.Builder(AndroidApplication.context)
@@ -67,12 +56,11 @@ object NetworkInstance {
         return builder.build()
     }
 
-
-
     @Singleton
     private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
+
 
     @Singleton
     private val retrofit: Retrofit = Retrofit.Builder().client(getLoggingHttpClient()).baseUrl(BASE_URL)

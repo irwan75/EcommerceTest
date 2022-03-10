@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.ardev.testecommerce.R
@@ -18,6 +19,8 @@ abstract class BaseFragment: Fragment() {
     fun getmView(): View? {
         return mView
     }
+
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     abstract fun layoutId(): Int
 
@@ -45,6 +48,7 @@ abstract class BaseFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupView()
         registerEvent()
+        initializeViewModelEvent()
         executeData()
     }
 
@@ -93,6 +97,10 @@ abstract class BaseFragment: Fragment() {
     }
 
     open fun initializeViewModel() {
+        //init view model
+    }
+
+    open fun initializeViewModelEvent() {
         //init view model
     }
 

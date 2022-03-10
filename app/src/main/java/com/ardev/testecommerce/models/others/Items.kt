@@ -1,18 +1,31 @@
 package com.ardev.testecommerce.models.others
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.ardev.testecommerce.base.BaseModel
 import com.ardev.testecommerce.models.response.ResponseItemsData
+import com.ardev.testecommerce.shared.constans.AppConstant
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-open class Items(
+@Entity(tableName = AppConstant.EntityTable.TABLE_ITEMS)
+data class Items(
+
     @Json(name = "id")
-    var id: String? = null,
-    @Json(name = "sku")
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int? = null,
+
+    @ColumnInfo(name = "details")
+    @Json(name = "details")
     var details: String? = null,
-    @Json(name = "name")
+
+    @ColumnInfo(name = "content")
+    @Json(name = "content")
     var content: String? = null,
+
 ) : BaseModel() {
 
     companion object {
@@ -20,16 +33,16 @@ open class Items(
 
     }
 
-    fun fromResponseItemsData(userId: Int, id: Int, title: String, body: String): Items {
+    fun fromResponseItemsData(id: Int, title: String, body: String): Items {
         return Items(
-            id= id.toString(),
+            id= id,
             details = body,
             content = title
         )
     }
 
     fun fromListResponseItemsData(dataList: List<ResponseItemsData>): List<Items> {
-        return dataList.map { Items(id = it.id.toString(), details = it.body, content = it.title) }
+        return dataList.map { Items(id = it.id, details = it.body, content = it.title) }
     }
 
 }

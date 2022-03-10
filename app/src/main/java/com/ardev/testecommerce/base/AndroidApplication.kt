@@ -2,7 +2,9 @@ package com.ardev.testecommerce.base
 
 import android.app.Application
 import android.content.Context
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class AndroidApplication : Application(){
 
     companion object{

@@ -9,8 +9,6 @@ import retrofit2.Retrofit
 
 class ClientItems(private val apiItems: ApiItems)  {
 
-//    private val campaignApi by lazy { retrofit.create(CampaignApi::class.java) }
-
     suspend fun getItemsData(): SimpleResponse<List<ResponseItemsData>>{
         return safeApiCall { apiItems.getItemsData() }
     }

@@ -28,7 +28,7 @@ class ItemCard : BaseView {
 
     public fun renderProduct(items: Items){
         items.let {
-            tvId?.text = it.id
+            tvId?.text = it.id.toString()
             tvContent?.text = it.content
             tvDetail?.text = it.details
             btnLock?.setOnClickListener {

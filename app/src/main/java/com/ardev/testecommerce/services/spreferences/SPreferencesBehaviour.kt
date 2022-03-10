@@ -1,6 +1,6 @@
-package com.ardev.testecommerce.services.cache
+package com.ardev.testecommerce.services.spreferences
 
-interface CacheBehaviour {
+interface SPreferencesBehaviour {
 
     fun get(key: String): String?
     fun save(key: String, value: String): Boolean

@@ -30,7 +30,7 @@ class MyItemRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val  item = values[position]
-        holder.tvId.text = item.id
+        holder.tvId.text = item.id.toString()
         holder.tvContent.text = item.content
         holder.tvDetail.text = item.details
         holder.parentLayout.setOnClickListener {

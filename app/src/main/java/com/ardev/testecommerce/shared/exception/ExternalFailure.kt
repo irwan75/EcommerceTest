@@ -11,7 +11,7 @@ sealed class ExternalFailure : Failure.FeatureFailure() {
 
     object Unauthorized : ExternalFailure(){
         operator fun invoke(message: String): Failure {
-            this.message = message ?: ""
+            this.message = message
             return this
         }
     }

@@ -1,4 +1,4 @@
-package com.ardev.testecommerce.services.cache
+package com.ardev.testecommerce.services.spreferences
 //
 //import android.content.Context
 //import android.content.SharedPreferences

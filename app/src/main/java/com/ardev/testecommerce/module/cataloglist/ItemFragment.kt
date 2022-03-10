@@ -1,7 +1,6 @@
 package com.ardev.testecommerce.module.cataloglist
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -11,21 +10,27 @@ import com.ardev.testecommerce.R
 import com.ardev.testecommerce.base.BaseFragment
 import com.ardev.testecommerce.component.recyclerview.MyItemRecyclerViewAdapter
 import com.ardev.testecommerce.models.others.Items
+import com.ardev.testecommerce.models.response.ResponseItemsData
 import com.ardev.testecommerce.module.cataloglist.viewmodel.ItemViewModel
-import com.ardev.testecommerce.module.detailcataloglist.viewmodel.DetailItemViewModel
-import com.ardev.testecommerce.placeholder.PlaceholderContent
+import com.ardev.testecommerce.shared.extension.failure
+import com.ardev.testecommerce.shared.extension.observe
+import com.ardev.testecommerce.shared.extension.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A fragment representing a list of Items.
  */
+@AndroidEntryPoint
 class ItemFragment : BaseFragment(), MyItemRecyclerViewAdapter.CallBack {
 
     private lateinit var adapter: MyItemRecyclerViewAdapter
     private lateinit var listView: RecyclerView
 
     private val mViewModel: ItemViewModel by lazy {
-        ViewModelProvider(this).get(ItemViewModel::class.java)
+        ViewModelProvider(this)[ItemViewModel::class.java]
     }
+
+//    private lateinit var mViewModel: ItemViewModel
 
     companion object {
 
@@ -61,7 +66,7 @@ class ItemFragment : BaseFragment(), MyItemRecyclerViewAdapter.CallBack {
     }
 
 //    override fun initializeViewModel() {
-//        mViewModel = ViewModelProvider(this).get(ItemViewModel::class.java)
+//        mViewModel = ViewModelProvider(this)[ItemViewModel::class.java]
 //    }
 
     override fun onItemSelected(item: Items) {
@@ -74,7 +79,7 @@ class ItemFragment : BaseFragment(), MyItemRecyclerViewAdapter.CallBack {
         mViewModel.fetchDataItem()
     }
 
-    override fun initializeViewModel() {
+    override fun initializeViewModelEvent() {
         mViewModel.getItemsData.observe(this){
             if(it==null){
                 Toast.makeText(getmView()?.context, "Unseccessful network call", Toast.LENGTH_SHORT).show()
